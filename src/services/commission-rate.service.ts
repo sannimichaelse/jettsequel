@@ -22,7 +22,7 @@ const updateCommissionRate = (oldRate: number, newRate: number) => {
     return `${oldRate + newRate}`
 }
 
-export const getRateBasedOnLocation = async (commissionRateParams: TCommissionRateParams) => {
+export async function getRateBasedOnLocation(commissionRateParams: TCommissionRateParams){
     let { saleItem, commissionRate } = commissionRateParams;
     const saleId = saleItem.saleId
 

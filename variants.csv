@@ -1,0 +1,3 @@
+company_id,handle,title,description,vendor,product_type,tags,sku
+1234,handle1,Trainers,Colorful trainers,Vendor1,Trainers,"Man,Trainers",123123123|36
+1234,handle1,Trainers,Colorful trainers,Vendor1,Trainers,"Man,Trainers",123123123|40

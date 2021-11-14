@@ -73,7 +73,7 @@ const getProductCode = (purchaseItems: TPurchaseItem[]) => {
     return productCode
 }
 
-export const vendorOrderSubmission = async (orderSubmissionParams: TOrderSubmission) => {
+export async function vendorOrderSubmission(orderSubmissionParams: TOrderSubmission){
     const { sale } = orderSubmissionParams
     const { email } = sale.customer
     const uuid = await getCustomerUUID(email)
