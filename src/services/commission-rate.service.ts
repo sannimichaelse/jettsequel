@@ -13,18 +13,18 @@ const dateInLastWeekOfMonth = (dateString: string) => {
     return daysDifference <= 7 ? true : false
 }
 
-const getCustomerInfoBySaleId = async (saleId: number): Promise<TCustomerInfo> => {
-    const url = envConfig.JETTI_SALES_URL
-    return get(`${url}/${saleId}.json`)
-}
-
 const updateCommissionRate = (oldRate: number, newRate: number) => {
     return `${oldRate + newRate}`
 }
 
+export function getCustomerInfoBySaleId(saleId: number): Promise<TCustomerInfo>{
+    const url = envConfig.JETTI_SALES_URL
+    return get(`${url}/${saleId}.json`)
+}
+
 export async function getRateBasedOnLocation(commissionRateParams: TCommissionRateParams){
     let { saleItem, commissionRate } = commissionRateParams;
-    const saleId = saleItem.saleId
+    const { saleId } = saleItem
 
     const { billingCountry, dateOrdered } = await getCustomerInfoBySaleId(saleId)
 

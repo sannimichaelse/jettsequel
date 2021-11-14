@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/index.ts",
     "build": "rimraf dist && tsc",
-    "import-variant-csv": "node ./dist/scripts/import-csv.js",
     "start": "NODE_PATH=./dist node ./dist/index.js",
     "lint-prettier": "prettier --config .prettierrc --list-different '{src,test}/**/*.{ts,js,css,scss}'",
     "prettier": "prettier --config .prettierrc --write './**/*.{ts,js,css,scss,json,md}'",
-    "test": "NODE_ENV=test NODE_PATH=./src mocha --require ts-node/register 'test/integration/**/*.test.ts' --timeout 20000 --exit",
+    "test-integration": "NODE_ENV=test NODE_PATH=./src mocha --require ts-node/register 'test/integration/**/*.test.ts' --timeout 20000 --exit",
+    "test-unit": "NODE_ENV=test NODE_PATH=./src mocha --require ts-node/register 'test/unit/**/*.test.ts' --timeout 20000 --exit",
+    "import-variant-csv": "node ./dist/scripts/import-csv.js",
     "commit": "git-cz"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "sequelize": "^6.9.0",
+    "sinon": "^12.0.1",
     "sqlite3": "^5.0.2",
     "validator": "^13.6.0"
   },
@@ -38,6 +40,7 @@
     "@types/morgan": "^1.9.3",
     "@types/node": "^16.9.1",
     "@types/request-promise-native": "^1.0.18",
+    "@types/sinon": "^10.0.6",
     "@types/supertest": "^2.0.11",
     "@types/validator": "^13.6.3",
     "@typescript-eslint/eslint-plugin": "^4.31.0",

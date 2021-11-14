@@ -13,3 +13,4 @@ log/*
 .DS_Store
 src/.DS_Store
 database.sqlite3
+:memory
