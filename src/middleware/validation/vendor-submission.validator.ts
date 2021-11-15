@@ -12,20 +12,18 @@ export const validateVendorOrderSubmission = (req: Request, res: Response, next:
     errorsValidation.push({ sale: 'sale is required' });
   }
 
-  if (!sale.customer) {
+  if (sale && !sale.customer) {
     errorsValidation.push({ saleCustomer: 'saleCustomer is required' });
   }
 
-  console.log("SALE__________")
-  console.log(sale)
-  console.log(sale.customer)
+  if (sale && sale.customer) {
+    let { email } = sale.customer
 
-  let { email } = sale.customer
+    email = !email ? '' : email;
 
-  email = !email ? '' : email;
-
-  if (!validator.isEmail(email)) {
-    errorsValidation.push({ saleCustomerEmail: 'saleCustomerEmail is invalid' });
+    if (!validator.isEmail(email)) {
+      errorsValidation.push({ saleCustomerEmail: 'saleCustomerEmail is invalid' });
+    }
   }
 
   if (errorsValidation.length > 0) {

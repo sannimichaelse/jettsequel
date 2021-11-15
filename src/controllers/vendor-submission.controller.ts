@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { vendorOrderSubmission } from 'services/order-submission.service';
+import { vendorOrderSubmission } from 'services/vendor-submission.service';
 import { CustomError } from 'utils/response/custom-error/customer-error';
 
 export const orderSubmission = async (req: Request, res: Response, next: NextFunction) => {

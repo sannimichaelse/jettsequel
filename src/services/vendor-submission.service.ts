@@ -1,13 +1,9 @@
 import envConfig from "../config"
-import { TOrderSubmission, TPurchaseItem, TVendorParams } from "types/order-submission";
+import { TOrderSubmission, TPurchaseItem, TVendorParams, TCustomerUUID } from "types/vendor-submission";
 import { get, post } from "utils/request";
 
-const getCustomerUUID = async (email: string): Promise<string> => {
-    const url = envConfig.JETTI_CUSTOMER_UUID_URL
-    return get(`${url}/jtt-hr-customer?where[${email}]=emailaddress@domain.com`)
-}
 
-const buildVendorOrderSubmissionRequest = (orderSubmissionParams: TOrderSubmission, uuid: string) => {
+export function buildVendorOrderSubmissionRequest(orderSubmissionParams: TOrderSubmission, uuid: string){
     const { sale, purchase, purchaseItems } = orderSubmissionParams
     const { email } = sale.customer
     const {
@@ -63,20 +59,25 @@ const buildVendorOrderSubmissionRequest = (orderSubmissionParams: TOrderSubmissi
     return vendorParams
 }
 
-const submitVendorOrder = async (vendorOrderRequest: TVendorParams): Promise<any> => {
-    const url = envConfig.JETTI_VENDOR_SUBMISSION_URL
-    return post(url, vendorOrderRequest)
+export async function getCustomerUUID(email: string): Promise<TCustomerUUID>{
+    const url = envConfig.JETTI_CUSTOMER_UUID_URL
+    return get(`${url}/jtt-hr-customer?where[${email}]=emailaddress@domain.com`)
 }
 
-const getProductCode = (purchaseItems: TPurchaseItem[]) => {
+export function getProductCode(purchaseItems: TPurchaseItem[]){
     const productCode = !purchaseItems[0].variant.vendorSku ? purchaseItems[0].variant.sku : purchaseItems[0].variant.vendorSku
     return productCode
+}
+
+export async function submitVendorOrder(vendorOrderRequest: TVendorParams): Promise<any>{
+    const url = envConfig.JETTI_VENDOR_SUBMISSION_URL
+    return post(url, vendorOrderRequest)
 }
 
 export async function vendorOrderSubmission(orderSubmissionParams: TOrderSubmission){
     const { sale } = orderSubmissionParams
     const { email } = sale.customer
-    const uuid = await getCustomerUUID(email)
+    const { uuid } = await getCustomerUUID(email)
 
     const vendorOrderSubmissionRequest = buildVendorOrderSubmissionRequest(orderSubmissionParams, uuid)
     const response = await submitVendorOrder(vendorOrderSubmissionRequest)

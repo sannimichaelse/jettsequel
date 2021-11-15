@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { validateVendorOrderSubmission } from 'middleware/validation/order-submission.validator';
-import { orderSubmission } from 'controllers/order-submission.controller';
+import { validateVendorOrderSubmission } from 'middleware/validation/vendor-submission.validator';
+import { orderSubmission } from 'controllers/vendor-submission.controller';
 
 const router = Router();
 

@@ -1,5 +1,5 @@
 import envConfig from "../config"
-import { EUROPEAN_UNION } from "utils/eu";
+import { EUROPEAN_UNION } from "utils/eu-list";
 import { TCommissionRateParams, TCustomerInfo } from "types/commission-rate";
 import { get } from "utils/request";
 

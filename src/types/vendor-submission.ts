@@ -74,3 +74,7 @@ export type TOrderSubmission = {
 export type TVendorParams = {
     order: TOrder
 }
+
+export type TCustomerUUID = {
+    uuid: string
+}
