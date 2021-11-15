@@ -24,6 +24,11 @@ jobs:
       run: |
         npm install
         npm run test-unit
+      env: 
+        JETTI_CUSTOMER_UUID_URL: ${{ secrets.JETTI_CUSTOMER_UUID_URL }}
+        JETTI_SALES_URL: ${{ secrets.JETTI_SALES_URL }}
+        JETTI_VENDOR_SUBMISSION_URL: ${{ secrets.JETTI_VENDOR_SUBMISSION_URL }}
+        JETTI_BEARER_TOKEN=: ${{ secrets.JETTI_BEARER_TOKEN }}
 
   deploy:
     needs: [test]
