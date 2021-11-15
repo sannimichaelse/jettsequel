@@ -1,7 +1,7 @@
 {
-  "name": "jetti",
+  "name": "jettsequel",
   "version": "1.0.0",
-  "description": "Jetti.io backend assignment",
+  "description": "jettsequel",
   "scripts": {
     "dev": "debug=* NODE_PATH=./src ts-node-dev --respawn ./src/index.ts",
     "build": "rimraf dist && tsc",
