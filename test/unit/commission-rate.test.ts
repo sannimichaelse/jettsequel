@@ -5,7 +5,7 @@ import { TCommissionRateParams } from "../../src/types/commission-rate"
 import * as CommissionRateService from "../../src/services/commission-rate.service"
 
 
-describe('POST api/v1/rates', () => {
+describe('Commission rate Unit Tests', () => {
 
     beforeEach(async function () {
         sinon.restore()

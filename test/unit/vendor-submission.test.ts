@@ -1,12 +1,11 @@
 import sinon from "sinon"
 import { expect } from "chai"
 import TestUtils from "../../src/utils/test-utils";
-import { TCommissionRateParams } from "../../src/types/commission-rate"
 import { TOrderSubmission, TPurchaseItem, TVendorParams } from "../../src/types/vendor-submission"
 import * as VendorSubmissionService from "../../src/services/vendor-submission.service"
 
 
-describe('POST api/v1/gateway', () => {
+describe('Vendor Submission unit tests', () => {
 
     beforeEach(async function () {
         sinon.restore()
