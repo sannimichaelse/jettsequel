@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import databaseConfig from "config/database.json"
+import databaseConfig from "../config/database.json"
 
 const env = process.env.NODE_ENV || "development"
 const { dialect, storage } = databaseConfig[env]

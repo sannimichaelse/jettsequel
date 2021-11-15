@@ -2,6 +2,7 @@ import envConfig from "../config"
 import { EUROPEAN_UNION } from "utils/eu-list";
 import { TCommissionRateParams, TCustomerInfo } from "types/commission-rate";
 import { get } from "utils/request";
+import { logger } from "config/logger";
 
 
 const dateInLastWeekOfMonth = (dateString: string) => {
@@ -29,19 +30,19 @@ export async function getRateBasedOnLocation(commissionRateParams: TCommissionRa
     const { billingCountry, dateOrdered } = await getCustomerInfoBySaleId(saleId)
 
     if (billingCountry.toLowerCase() in EUROPEAN_UNION) {
-        console.log("Customer country in EU")
+        logger.info("Customer country in EU")
         commissionRate = updateCommissionRate(+commissionRate, 20)
     }
 
     if (dateInLastWeekOfMonth(dateOrdered)) {
-        console.log("Sale date in last week of month")
+        logger.info("Sale date in last week of month")
         commissionRate = updateCommissionRate(+commissionRate, 10)
     }
 
     if (saleItem.properties.length > 0) {
         const giftNote = saleItem.properties.find((saleItemProperty) => saleItemProperty.name === "Gift Note")
         if (giftNote) {
-            console.log("Gift note exists in sale properties ")
+            logger.info("Gift note exists in sale properties")
             commissionRate = updateCommissionRate(+commissionRate, 5)
         }
     }

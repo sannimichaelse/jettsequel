@@ -12,6 +12,7 @@ import { errorHandler } from './middleware/error-handler';
 import routes from './routes';
 import config from 'config'
 import sequelize from "db/index"
+import { logger } from 'config/logger';
 
 export const app = express();
 app.use(cors());
@@ -24,22 +25,21 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, '../log/access
   flags: 'a',
 });
 app.use(morgan('combined', { stream: accessLogStream }));
-app.use(morgan('combined'));
 app.use('/', routes);
 
 app.use(errorHandler);
 
 const port = config.APP_PORT || 9002;
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  logger.info(`Server running on port ${port}`);
 });
 
 (async () => {
     try {
         await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        logger.info('Connection has been established successfully.');
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        logger.info('Unable to connect to the database:', error);
     }
 })();
 

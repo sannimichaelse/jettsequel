@@ -1,6 +1,7 @@
 import csv from 'csvtojson'
 import { addNewVariant } from '../services/variant.service'
 import { TVariant } from '../types/variant'
+import { logger } from "../config/logger"
 
 const getCSVPath = () => {
     return process.argv.slice(2)[0]
@@ -28,7 +29,7 @@ const importVariantCSVData = async (variants: TVariant[]) => {
         await addNewVariant(variant)
     }))
 
-    console.log("Variants imported successfully")
+    logger.info("Variants imported successfully")
 }
 
 const startVariantImport = async () => {
