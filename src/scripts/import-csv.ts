@@ -3,8 +3,16 @@ import { addNewVariant } from '../services/variant.service'
 import { TVariant } from '../types/variant'
 import { logger } from "../config/logger"
 
-const getCSVPath = () => {
-    return process.argv.slice(2)[0]
+const validateCsvPath = (path: string) => {
+    if (!path) {
+        throw new Error("Please supply csv path")
+    }
+
+    if (path.split(".")[1] !== "csv") {
+        throw new Error("Supplied path must be a valid csv")
+    }
+
+    return path
 }
 
 const buildVariantData = (variantData: any) => {
@@ -29,16 +37,20 @@ const importVariantCSVData = async (variants: TVariant[]) => {
         await addNewVariant(variant)
     }))
 
-    logger.info("Variants imported successfully")
+    logger.info("variants imported successfully")
 }
 
-const startVariantImport = async () => {
-    const filePath = getCSVPath()
-    const jsonArray = await csv().fromFile(filePath);
+export async function startVariantImport(path: string) {
+    const csvPath = validateCsvPath(path)
+    const jsonArray = await csv().fromFile(csvPath);
     const variants = buildVariantData(jsonArray)
-    return importVariantCSVData(variants)
+    return await importVariantCSVData(variants)
 }
 
 (async () => {
-    await startVariantImport()
+    try {
+        await startVariantImport(process.argv.slice(2)[0])
+    } catch (err) {
+        console.log(err)
+    }
 })()

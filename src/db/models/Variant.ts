@@ -33,6 +33,7 @@ const Variant = sequelize.define('Variant', {
   },
 }, {
   // Other model options go here
+  tableName: "variants",
   timestamps: false
 });
 
