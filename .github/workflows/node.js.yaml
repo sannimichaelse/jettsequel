@@ -41,7 +41,6 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.SSH_PORT }}
-        password: ${{ secrets.SSH_PASSWORD }} 
         script: |
           cd projects/jettsequel
           git pull origin main
