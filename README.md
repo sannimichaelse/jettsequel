@@ -59,7 +59,7 @@ Unit Tests
     $ npm run test-unit 
 ## Documentation
 
-[Postman Collection](https://documenter.getpostman.com/view/3064040/U16ks5oQ)
+[Postman Collection](https://documenter.getpostman.com/view/3064040/UVC9g5Mb)
 
 
 
