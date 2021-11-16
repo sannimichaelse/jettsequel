@@ -9,6 +9,7 @@ const dateInLastWeekOfMonth = (dateString: string) => {
     const date = dateString.substring(0, 10)
     const [year, month, day] = date.split("-")
 
+    // The Unary plus (+) operator converts its operand to a number
     const dateObject = new Date(+year, +month, 0);
     const daysDifference = dateObject.getDate() - (+day)
     return daysDifference <= 7 ? true : false
@@ -47,6 +48,7 @@ export async function getRateBasedOnLocation(commissionRateParams: TCommissionRa
         }
     }
 
+    // The Unary plus (+) operator converts its operand to a number
     const price = saleItem.price * (+commissionRate / 100)
 
     return { commissionRate, price }

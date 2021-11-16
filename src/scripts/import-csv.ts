@@ -44,7 +44,7 @@ export async function startVariantImport(path: string) {
     const csvPath = validateCsvPath(path)
     const jsonArray = await csv().fromFile(csvPath);
     const variants = buildVariantData(jsonArray)
-    return await importVariantCSVData(variants)
+    return importVariantCSVData(variants)
 }
 
 (async () => {
